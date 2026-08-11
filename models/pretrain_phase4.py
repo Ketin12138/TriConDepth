@@ -4,7 +4,6 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from networks.DCDepth import DCDepth
 from networks.YHDepth import YHDepth
 from pytorch_lightning import LightningModule
 from torch.optim import AdamW
