@@ -1,0 +1,41 @@
+_base_: 'nyu_base.yaml'
+
+model:
+  type: 'Stage1Model'
+  encoder: 'resnet101'
+  mem_size: 4096
+  feat_dim: 256
+  beta: 0.8
+  tau: 0.07
+  drop_path_rate: 0.3
+  drop_path_rate_crf: 0.3
+  seq_dropout_rate: 0.3
+  warmup_steps: 2000            
+
+dataset:
+  phase: 1
+
+optimization:
+  lr: 0.0001             
+  div_factor: 10.0
+  final_div_factor: 100.0
+  pct_start: 0.3
+  weight_decay: 0.01
+  lr_ratio: 5.0
+  anneal_strategy: 'cos'
+
+training:
+  seed: 512
+  resume_from: null
+  work_dir: 'checkpoints_yuhua_NYU_33%/checkpoints_phase1'
+  max_epochs: 50
+  batch_size: 10
+  num_workers: 8
+  log_freq: 1024
+  accumulate_grad_batches: 1
+  precision: '16'
+  find_unused_parameters: true
+  gradient_clip_val: 1.0
+
+evaluation:
+  every_n_epochs: 1

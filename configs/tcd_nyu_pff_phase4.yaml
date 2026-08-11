@@ -1,0 +1,71 @@
+_base_: 'nyu_base.yaml'
+
+mode: test
+
+training:
+  seed: 512
+  resume_from: null
+  work_dir: 'checkpoints_yuhua_NYU_10%/checkpoints_phase4'
+  max_epochs: 100
+  batch_size: 2
+  num_workers: 8
+  log_freq: 1024
+  accumulate_grad_batches: 2
+  precision: '16'
+
+  find_unused_parameters: true
+  gradient_clip_val: 1.0
+
+dataset:
+  phase: 4
+
+model:
+  type: 'Stage4Model'
+  encoder: 'resnet101'
+
+  #encoder: 'large12'
+  #pretrain: './checkpoints_phase1/dct_eigen_phase1/dcdepth_logs/version0/checkpoints/epoch=37-step=14668.ckpt'
+  #pretrain: './Models/swin/swin_large_patch4_window12_384_22k.pth'
+  pretrained_model_path: './checkpoints_yuhua_NYU_10%/checkpoints_phase3/dct_nyu_pff_phase3/epoch=80-step=19683.ckpt'
+
+  #ape: false
+  drop_path_rate: 0.3
+  drop_path_rate_crf: 0.3
+  seq_dropout_rate: 0.3
+  output_space: 'log'
+  #feat_dim: 256
+  #window_size: 7
+  #sigma: 0.05
+  #self_sup_threshold: 0.3
+  #self_sup_ratio: 0.2
+  #self_sup_weight: 0.5
+
+
+
+loss:
+  variance_focus: 0.85
+  beta: 0.8
+  freq_reg_weight: 0.005
+  smooth_reg_weight: 0.005
+  #wcl_weight: 0.1
+  #depth_thresh: 0.1
+  min_valid_pixels: 0
+  square_root: true
+  encoder_consistency_weight: 0.01
+  consistency_l1_weight: 0.005
+  pseudo_weight: 0.1           
+  pseudo_ramp_up_iters: 12000
+  unsup_contrastive_weight: 0.001
+  unsup_ranking_weight: 0.001 
+
+optimization:
+  max_lr: 1.0e-4
+  div_factor: 5.0
+  final_div_factor: 4.0
+  pct_start: 0.1
+  weight_decay: 0.0
+  lr_ratio: 4.0
+  anneal_strategy: 'cos'
+
+evaluation:
+  every_n_epochs: 1
