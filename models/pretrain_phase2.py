@@ -3,7 +3,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from networks.YHDepth import YHDepth
-from networks.DCDepth import DCDepth
 from pytorch_lightning import LightningModule
 from torch.optim import AdamW
 from networks.projectionhead import ProjectionHead2
