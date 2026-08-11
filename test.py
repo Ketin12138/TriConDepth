@@ -177,7 +177,7 @@ def test(post_process: bool):
             if dataset == 'nyu':
                 name = lines[batch_idx].split()[0][: -4]
                 name = name.split('/')
-                name = f'{name[0]}_{name[1]}_depth_dcdepth.png'
+                name = f'{name[0]}_{name[1]}_depth_tcdepth.png'
                 image = inv_normalize(image.squeeze()).permute(1, 2, 0).cpu().numpy()
                 pred_depth = pred_depth.cpu().numpy()
                 gt_depth = gt_depth.cpu().numpy()
@@ -188,7 +188,7 @@ def test(post_process: bool):
             elif dataset == 'kitti_eigen':
                 name = lines[batch_idx].split()[0][: -4]
                 name = name.split('/')
-                name = f'{name[1]}_{name[4]}_dcdepth'
+                name = f'{name[1]}_{name[4]}_tcdepth'
                 image = inv_normalize(image.squeeze()).permute(1, 2, 0).cpu().numpy()
                 pred_depth = pred_depth.cpu().numpy()              
                 gt_depth = gt_depth.cpu().numpy()
@@ -201,15 +201,6 @@ def test(post_process: bool):
                 plt.imsave(os.path.join(vis_dir, f'{name}_rgb.png'), image)
                 plt.imsave(os.path.join(vis_dir, f'{name}_pred.png'), np.log10(pred_depth), cmap='magma')
                 plt.imsave(os.path.join(vis_dir, f'{name}_gt.png'), gt_depth, cmap='magma')
-            elif dataset == 'tofdc':
-                name = f'{batch_idx:05}'
-                image = inv_normalize(image.squeeze()).permute(1, 2, 0).cpu().numpy()
-                pred_depth = pred_depth.cpu().numpy()
-                gt_depth = gt_depth.cpu().numpy()
-                plt.imsave(os.path.join(vis_dir, f'{name}_rgb.png'), image)
-                plt.imsave(os.path.join(vis_dir, f'{name}_pred.png'), pred_depth, cmap='jet', vmin=np.min(gt_depth),
-                           vmax=np.max(gt_depth))
-                plt.imsave(os.path.join(vis_dir, f'{name}_gt.png'), gt_depth, cmap='jet')
             else:
                 pass
 
