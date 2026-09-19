@@ -4,4 +4,4 @@ This repository contains the code implementation for the paper **"Leveraging Unl
 
 📄 **[Read the paper here (Pattern Recognition, 2026)]()**
 
-![Workflow of Our Methods](./Overall Framework.jpg)
+![Workflow of Our Methods](./Overview.jpg)
