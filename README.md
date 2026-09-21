@@ -158,11 +158,7 @@ The training command follows the general format:
 python train.py CONFIG_FILE_NAME --gpus NUMBER_OF_GPUS
 ```
 
-where `CONFIG_FILE_NAME` specifies the configuration file for the corresponding training phase, and `NUMBER_OF_GPUS` specifies the number of GPUs used for training. For example, to train with **3 GPUs**, you can use
-```bash
-python train.py tcd_eigen_pff_phase1 --gpus 3
-```
-The number of GPUs can be adjusted according to the available hardware.
+where `CONFIG_FILE_NAME` specifies the configuration file for the corresponding training phase, and `NUMBER_OF_GPUS` specifies the number of GPUs used for training. For example, to train with **3 GPUs**, you can use python train.py tcd_eigen_pff_phase1 --gpus 3. The number of GPUs can be adjusted according to the available hardware.
 
 ### Loading the Checkpoint from the Previous Phase
 
