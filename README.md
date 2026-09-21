@@ -113,30 +113,37 @@ The corresponding split files for different labeled-data ratios are provided und
 For example, to train on **KITTI with 5% labeled data (1/20 labels)**, set the corresponding split files in `setup()` to the 5% configuration:
 
 ```python
-if stage == 'fit' or stage is None:
+def setup(self, stage: str) -> None:
+        if stage == 'fit' or stage is None:
             if self.phase == 1:
-                self.args.filenames_file = 'data_splits/phase1/eigen/yuhua_train_files_with_gt_50%_phase1.txt'
+                self.args.filenames_file = 'data_splits/phase1/eigen/yuhua_train_files_with_gt_5%_phase1.txt'
                 self.kitti_train = DataLoadPreprocess(self.args, 'train', transform=preprocessing_transforms('train'))
 
             elif self.phase == 2:
-                self.args.filenames_file = 'data_splits/phase2/eigen/yuhua_train_files_with_gt_50%_phase2.txt'
+                self.args.filenames_file = 'data_splits/phase2/eigen/yuhua_train_files_with_gt_5%_phase2.txt'
                 self.kitti_train = DataLoadPreprocess(self.args, 'train', transform=preprocessing_transforms('train'))
 
             elif self.phase == 3:
-                self.args.filenames_file = 'data_splits/phase2/eigen/yuhua_train_files_with_gt_50%_phase2.txt'
+                self.args.filenames_file = 'data_splits/phase2/eigen/yuhua_train_files_with_gt_5%_phase2.txt'
                 self.kitti_train = DataLoadPreprocess(self.args, 'train', transform=preprocessing_transforms('train'))
 
             elif self.phase == 4:
                 args_labeled = EasyDict(self.args.copy())
                 args_unlabeled = EasyDict(self.args.copy())
 
-                args_labeled.filenames_file = 'data_splits/phase2/eigen/yuhua_train_files_with_gt_50%_phase2.txt'
+                args_labeled.filenames_file = 'data_splits/phase2/eigen/yuhua_train_files_with_gt_5%_phase2.txt'
                 args_labeled.phase = 2
                 self.dataset_labeled = DataLoadPreprocess(args_labeled, 'train', transform=preprocessing_transforms('train'))
 
-                args_unlabeled.filenames_file = 'data_splits/phase1/eigen/yuhua_train_files_with_gt_50%_phase1.txt'
+                args_unlabeled.filenames_file = 'data_splits/phase1/eigen/yuhua_train_files_with_gt_5%_phase1.txt'
                 args_unlabeled.phase = 1
                 self.dataset_unlabeled = DataLoadPreprocess(args_unlabeled, 'train', transform=preprocessing_transforms('train'))
+
+            if self.phase >= 3:
+                self.kitti_val = DataLoadPreprocess(self.args, 'online_eval', transform=preprocessing_transforms('online_eval'))
+
+        if stage == 'test' or stage is None:
+            self.kitti_test = DataLoadPreprocess(self.args, 'online_eval', transform=preprocessing_transforms('online_eval'))
 ```
 
 For other labeled-data ratios, replace `5%` with the corresponding split files provided in `./data_splits/`.
