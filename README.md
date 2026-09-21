@@ -183,7 +183,7 @@ For example, suppose the checkpoint obtained from Phase 1 is saved as:
 Then, before starting Phase 2, set the following in the Phase 2 configuration file:
 
 ```yaml
-pretrained_model_path: './checkpoints_KITTI_5%/checkpoints_stage1/checkpoints_KITTI_stage1.pth'
+pretrained_model_path: './checkpoints_KITTI_5%/checkpoints_phase1/checkpoints_KITTI_stage1.pth'
 ```
 
 The same procedure should be followed for the subsequent phases.
