@@ -186,7 +186,7 @@ Then, before starting Phase 2, set the following in the Phase 2 configuration fi
 pretrained_model_path: './checkpoints_KITTI_5%/checkpoints_stage1/checkpoints_KITTI_stage1.pth'
 ```
 
-The same procedure should be followed for the subsequent phases:
+The same procedure should be followed for the subsequent phases.
 
 
 
