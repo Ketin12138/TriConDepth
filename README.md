@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 This project uses the **KITTI Eigen split** and **NYU Depth V2** datasets. Please download the datasets from the links below and organize them under the `dataset/` directory following the specified structure.
 
-### KITTI Eigen Split
+## KITTI Eigen Split
 
 Download:
 
@@ -53,7 +53,7 @@ dataset/
     └── ...
 ```
 
-### NYU Depth V2
+## NYU Depth V2
 
 Download:
 
@@ -81,7 +81,7 @@ dataset/
     └── ...
 ```
 
-### Dataset Layout
+## Dataset Layout
 
 After preparation, the project should follow the structure below:
 
@@ -99,6 +99,8 @@ TriConDepth/
 └── test.py
 ```
 
-The Eigen and NYU split files used in our experiments are already provided in `data_splits/`. The dataset paths are predefined in the corresponding configuration files.
+## Training
+
+
 
 
