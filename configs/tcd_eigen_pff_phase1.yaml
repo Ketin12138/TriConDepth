@@ -27,7 +27,7 @@ optimization:
 training:
   seed: 512
   resume_from: null
-  work_dir: 'checkpoints_yuhua_KITTI_5%/checkpoints_phase1'
+  work_dir: 'checkpoints_KITTI_5%/checkpoints_phase1'
   max_epochs: 40
   batch_size: 20
   num_workers: 8
