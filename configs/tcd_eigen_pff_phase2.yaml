@@ -4,8 +4,7 @@ _base_: 'eigen_base.yaml'
 training:
   seed: 512
   resume_from: null
-  #resume_from: ./checkpoints_resnet101_yuhua_yes_50%/dct_eigen_pff/epoch=10-step=21230.ckpt
-  work_dir: 'checkpoints_yuhua_KITTI_5%/checkpoints_phase2'
+  work_dir: 'checkpoints_KITTI_5%/checkpoints_phase2'
   max_epochs: 30
   batch_size: 2
   num_workers: 8
@@ -23,12 +22,7 @@ model:
   type: 'Stage2Model'
   encoder: 'resnet101'
 
-  #encoder: 'large12'
-  #pretrain: './checkpoints_phase1/dct_eigen_phase1/dcdepth_logs/version0/checkpoints/epoch=37-step=14668.ckpt'
-  #pretrain: './Models/swin/swin_large_patch4_window12_384_22k.pth'
-  #pretrained_encoder_path: './checkpoints_yuhua_KITTI_50%/checkpoints_phase1/dct_eigen_pff_phase1/encoder_train_loss_epoch035_score0.0000.pth'
-  pretrained_encoder_path: './checkpoints_yuhua_KITTI_5%/checkpoints_phase1/tcd_eigen_pff_phase1/encoder_train_loss_epoch033_score0.0000.pth'
-  #ape: false
+  pretrained_encoder_path: './checkpoints_KITTI_5%/checkpoints_phase1/checkpoints_KITTI_phase1.pth'
   drop_path_rate: 0.3
   drop_path_rate_crf: 0.3
   seq_dropout_rate: 0.3
@@ -48,7 +42,6 @@ loss:
   freq_reg_weight: 0.005
   smooth_reg_weight: 0.005
   wcl_weight: 0.1
-  #depth_thresh: 0.1
   min_valid_pixels: 0
   square_root: true
 
